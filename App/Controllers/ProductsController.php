@@ -134,23 +134,32 @@ class ProductsController extends Controller {
 
     function Evaluation($id) {
 
-        $date_time = date('Y-m-d H:i:s');
         $data = $_POST;
-        $data['date-time'] = 
+        $data['id_product'] = $id;
+        $data['id_user'] = $_SESSION['user']['id'];
+        $data['date_time'] = date('Y-m-d H:i:s');
+        // $data['date-time'] = $date_time;
+        // $data
+        $result = $this->commentModel->store($data);
+        if($result != false) {
+            $data['result'] = $result;
+        } else {
+            $data['result'] = "Lưu không thành công!";
+        }
 
         echo '<pre>';
         // print_r($id);
-        print_r($data['star-rank']);
+        print_r($data);
         // print_r($date_time);
         echo '</pre>';
 
-        $comments = $this->commentModel->getById($id);
+        // $comments = $this->commentModel->getById($id);
 
-        if($comments != false) {
-            $data['comments'] = $comments;
-        } else {
-            $data['comments'] = "Chưa có đánh giá nào";
-        }
+        // if($comments != false) {
+        //     $data['comments'] = $comments;
+        // } else {
+        //     $data['comments'] = "Chưa có đánh giá nào";
+        // }
         
         
         
