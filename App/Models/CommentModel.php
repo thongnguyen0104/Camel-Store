@@ -54,8 +54,8 @@ class CommentModel extends Database {
         $star = $data['star-rank'];
         $date = $data['date_time'];
 
-        $stmt = $this->db->prepare("INSERT INTO COMMENTS(content, id_user, id_product, star, date) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("siiii", $content, $id_user, $id_product, $star, $date);
+        $stmt = $this->db->prepare("INSERT INTO COMMENTS (content, id_user, id_product, star, date) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("siiis", $content, $id_user, $id_product, $star, $date);
 
         $stmt->execute();
         $result = $stmt->affected_rows;

@@ -126,8 +126,11 @@
                                     <div class="textarea">
                                         <textarea name="content" id="" cols="30" placeholder="Nhận xét của bạn ... "></textarea>
                                     </div>
-                                    <div class="form-btn" type="submit">
-                                        <button class="form-button">Post</button>
+
+                                    <div class="form-btn" type="submit" disabled>
+                                        <button class="form-button">
+                                            Post
+                                        </button>
                                     </div>
                                 </form>
                         </div>
@@ -143,7 +146,7 @@
                             <img class="cmt-image" src="<?= USER_AVATAR_URL ?>/<?= ($comment['avatar'] !="") ? $comment['avatar'] :  "default/default-avatar.png" ?>" alt="user-image">
                         </div>
                         <div>
-                            <span id="user-cmt-star"><?= $comment['star']?></span>
+                            <span hidden id="user-cmt-star"><?= $comment['star']?></span>
                             <div style="width: 200px;" ><?= $comment['name'] ?></div>
                             <?php for ($i=0; $i < $comment['star']; $i++) : ?>
                                 <i class="fa fa-star" style="color: orange;"></i>
@@ -221,16 +224,15 @@
         const btn = document.querySelector(".form-button");
         const post = document.querySelector(".container_post");
         const widget = document.querySelector(".container_star-widget");
-       
-        // // const editBtn = document.querySelector(".container_post-edit");
-            <?php foreach ($data['comments'] as $index => $comment) : ?>
-                <?php if($_SESSION['user']['id'] == $comment['id_user']) : ?>
-                   const editBtn = document.querySelector("<?= ".user-cmt-edit" . $comment['id']; ?>");
-                <?php endif; ?>
-            <?php endforeach; ?>
-        // const editBtn = document.querySelector(".user-cmt-edit1");
+
+        <?php foreach ($data['comments'] as $index => $comment) : ?>
+            <?php if($_SESSION['user']['id'] == $comment['id_user']) : ?>
+                const editBtn = document.querySelector("<?= ".user-cmt-edit" . $comment['id']; ?>");
+            <?php endif; ?>
+        <?php endforeach; ?>
+
         console.log("Bat  dau");
-        btn.onload = () => {
+        btn.onclick = () => {
             widget.style.display = "none";
             post.style.display = "block";
             editBtn.onclick = () => {

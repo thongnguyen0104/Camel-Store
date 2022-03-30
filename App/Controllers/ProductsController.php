@@ -138,43 +138,40 @@ class ProductsController extends Controller {
         $data['id_product'] = $id;
         $data['id_user'] = $_SESSION['user']['id'];
         $data['date_time'] = date('Y-m-d H:i:s');
-        // $data['date-time'] = $date_time;
-        // $data
+
         $result = $this->commentModel->store($data);
         if($result != false) {
-            $data['result'] = $result;
+            $data['result'] = "Lưu comment thành công!";
         } else {
             $data['result'] = "Lưu không thành công!";
         }
 
-        echo '<pre>';
-        // print_r($id);
-        print_r($data);
-        // print_r($date_time);
-        echo '</pre>';
+        // echo '<pre>';
+        // print_r($data['result']);
+        // echo '</pre>';
 
-        // $comments = $this->commentModel->getById($id);
+        $comments = $this->commentModel->getById($id);
 
-        // if($comments != false) {
-        //     $data['comments'] = $comments;
-        // } else {
-        //     $data['comments'] = "Chưa có đánh giá nào";
-        // }
+        if($comments != false) {
+            $data['comments'] = $comments;
+        } else {
+            $data['comments'] = "Chưa có đánh giá nào";
+        }
         
         
         
-        // $products = $this->productModel->getById($id);
-        // $data['products'] = $products;
+        $products = $this->productModel->getById($id);
+        $data['products'] = $products;
 
-        // $productsSame = $this->productModel->getByIdCategory($data['products']['id_product_type']);
-        // $data['productsSame'] = $productsSame;
+        $productsSame = $this->productModel->getByIdCategory($data['products']['id_product_type']);
+        $data['productsSame'] = $productsSame;
         
         // $data['session'] = $_SESSION['user'];
         // echo '<pre>';
         // print_r($_SESSION['user']['id']);
         // echo '</pre>';
 
-        // $this->view("/products/details", $data);
+        $this->view("/products/details", $data);
     }
 
 
