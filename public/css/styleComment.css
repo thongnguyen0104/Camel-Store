@@ -1,0 +1,181 @@
+.cmt-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid gray;
+    display: inline;
+}
+.cmt-content {
+    display: block;
+    color: #433f3b;
+    margin-left: 100px;
+}
+.cmt-tittle {
+    font-size: 30px;
+    color: #555;
+}
+.cmt-input {
+    font-size: 20px;
+    border-radius: 4px;
+    height: 50px;
+}
+.cmt-btn {
+    font-size: 17px;
+    max-width: 100%;
+    max-width: 155px;
+    text-align: center;
+}
+.giamgia {
+    text-decoration: line-through;
+}
+
+.container-star {
+    position: relative;
+    width: 400px;
+    background: #111;
+    padding: 20px, 30px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container-star .container_post {
+    display: none;
+}
+.container-star .container_post-text {
+    font-size: 25px;
+    color: #666;
+    font-weight: 500;
+}
+.container-star .container_post-edit {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-size: 16px;
+    color: #666;
+    font-weight: 500;
+    cursor: pointer;
+}
+.container-star .container_post-edit:hover {
+    text-decoration: underline;
+}
+
+.container-star .container_star-widget .rank-star {
+    display: none;
+}
+
+.container_star-widget label {
+    font-size: 40px;
+    color: #444;
+    padding: 15px;
+    float: right;
+    transition: all 0.2s ease;
+}
+
+.rank-star:not(:checked) ~ label:hover,
+.rank-star:not(:checked) ~ label:hover ~ label {
+    color: #fd4;
+}
+
+.rank-star:checked ~ label {
+    color: #fd4;
+}
+
+.rank-star#rate-5:checked ~ label {
+    color: #fe7;
+    text-shadow: 0 0 20px #952;
+}
+
+#rate-1:checked ~ form .cmt-like::before {
+    content: "I just hate it 😓";
+}
+#rate-1:checked ~ form .form-cmt-rank::before {
+    content: "1";
+}
+
+#rate-2:checked ~ form .cmt-like::before {
+    content: "I don't like it 😏";
+}
+#rate-2:checked ~ form .form-cmt-rank::before {
+    content: "2";
+}
+
+#rate-3:checked ~ form .cmt-like::before {
+    content: "It is awesome 😗";
+}
+#rate-3:checked ~ form .form-cmt-rank::before {
+    content: "3";
+}
+
+#rate-4:checked ~ form .cmt-like:before {
+    content: "I just like it 😘";
+}
+#rate-4:checked ~ form .form-cmt-rank::before {
+    content: "4";
+}
+
+#rate-5:checked ~ form .cmt-like::before {
+    content: "I just love it 😍";
+}
+#rate-5:checked ~ form .form-cmt-rank::before {
+    content: "5";
+}
+
+.container-star .container_star-widget-form {
+    display: none;
+}
+.rank-star:checked ~ .container_star-widget-form {
+    display: block;
+}
+
+.container_star-widget .container_star-widget-form header {
+    width: 100%;
+    font-size: 25px;
+    color: #ff523b;
+    font-weight: 500;
+    margin: 5px 0 20px 0;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+.container_star-widget .container_star-widget-form .textarea {
+    height: 100px;
+    width: 100%;
+    overflow: hidden;   
+}
+.container_star-widget .container_star-widget-form .textarea textarea {
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    outline: none;
+    color: #eee;
+    border: 1px solid #333;
+    background: #222;
+    padding: 10px;
+    font-size: 17px;
+    resize: none;
+}
+.container_star-widget .container_star-widget-form .form-btn {
+    height: 45px;
+    width: 100%;
+    margin: 15px 0;
+}
+.container_star-widget .container_star-widget-form .form-btn button {
+    height: 100%;
+    width: 100%;
+    border: 1px solid #444;
+    outline: none;
+    background: #222;
+    color: #999;
+    font-size: 17px;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.container_star-widget .container_star-widget-form .form-btn button:hover {
+    background: #1b1b1b;
+}
