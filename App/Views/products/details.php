@@ -186,7 +186,9 @@
 
     <!-- footer -->
     <?php require_once(VIEW . '/shared/footer.php') ?>
-
+    <script>
+        alert("BAN DA BINH LUAN SAN PHAM NAY ROI");
+    </script>
     <!-- js for toggle nemu -->
     <script>
         var MenuItems = document.getElementById("MenuItems");

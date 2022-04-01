@@ -139,39 +139,52 @@ class ProductsController extends Controller {
         $data['id_user'] = $_SESSION['user']['id'];
         $data['date_time'] = date('Y-m-d H:i:s');
 
-        $result = $this->commentModel->store($data);
-        if($result != false) {
-            $data['result'] = "Lưu comment thành công!";
-        } else {
-            $data['result'] = "Lưu không thành công!";
-        }
-
-        // echo '<pre>';
-        // print_r($data['result']);
-        // echo '</pre>';
-
         $comments = $this->commentModel->getById($id);
 
+        $data['comments'] = $comments;
         if($comments != false) {
-            $data['comments'] = $comments;
-        } else {
-            $data['comments'] = "Chưa có đánh giá nào";
+            foreach($comments as $index => $comment) {
+                if ($comment['id_user'] == $_SESSION['user']['id']) {
+                    $data['checkComment'] = "1";
+                }
+            }
         }
-        
-        
-        
-        $products = $this->productModel->getById($id);
-        $data['products'] = $products;
+            
 
-        $productsSame = $this->productModel->getByIdCategory($data['products']['id_product_type']);
-        $data['productsSame'] = $productsSame;
-        
-        // $data['session'] = $_SESSION['user'];
-        // echo '<pre>';
-        // print_r($_SESSION['user']['id']);
-        // echo '</pre>';
+        // $result = $this->commentModel->store($data);
+        // if($result != false) {
+        //     $data['result'] = "Lưu comment thành công!";
+        // } else {
+        //     $data['result'] = "Lưu không thành công!";
+        // }
 
-        $this->view("/products/details", $data);
+        echo '<pre>';
+        // print_r($data['result']);
+        print_r($data);
+        echo '</pre>';
+
+        // // Lay binh luan cua san pham
+        // $comments = $this->commentModel->getById($id);
+        // if($comments != false) {
+        //     $data['comments'] = $comments;
+        // } else {
+        //     $data['comments'] = "Chưa có đánh giá nào";
+        // }
+        
+        // // Lay chi tiet san pham
+        // $products = $this->productModel->getById($id);
+        // $data['products'] = $products;
+
+        // // Lay san pham cung loai
+        // $productsSame = $this->productModel->getByIdCategory($data['products']['id_product_type']);
+        // $data['productsSame'] = $productsSame;
+        
+        $data['session'] = $_SESSION['user'];
+        echo '<pre>';
+        print_r($_SESSION['user']['id']);
+        echo '</pre>';
+
+        // $this->view("/products/details", $data);
     }
 
 
