@@ -100,7 +100,7 @@
 
     <!-- featured products -->
     <div class="small-container">
-        <!-- <h2 class="title">Featured Products</h2>
+        <h2 class="title">Sản phẩm giảm giá</h2>
         <div class="row">
             <div class="col-4">
                 <a href="">
@@ -154,7 +154,7 @@
                 </div>
                 <p>$50.00</p>
             </div>
-        </div> -->
+        </div>
         <!-- Lastest Products -->
         <h2 id="local" class="title">Sản phẩm mới nhất</h2>
         <div class="row">
@@ -193,7 +193,7 @@
     </div>
 
     <!-- offer -->
-    <!-- <div class="offer">
+    <div class="offer">
         <div class="small-container">
             <div class="row">
                 <div class="col-2">
@@ -210,10 +210,10 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <!-- testimonial -->
-    <!-- <div class="testimonial">
+    <div class="testimonial">
         <div class="small-container">
             <div class="row">
                 <div class="col-3">
@@ -275,7 +275,7 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <!-- brands -->
     <div class="brands">
