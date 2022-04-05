@@ -151,40 +151,40 @@ class ProductsController extends Controller {
         }
             
 
-        // $result = $this->commentModel->store($data);
-        // if($result != false) {
-        //     $data['result'] = "Lưu comment thành công!";
-        // } else {
-        //     $data['result'] = "Lưu không thành công!";
-        // }
+        $result = $this->commentModel->store($data);
+        if($result != false) {
+            $data['result'] = "Lưu comment thành công!";
+        } else {
+            $data['result'] = "Lưu không thành công!";
+        }
 
-        echo '<pre>';
+        // echo '<pre>';
         // print_r($data['result']);
-        print_r($data);
-        echo '</pre>';
+        // print_r($data);
+        // echo '</pre>';
 
-        // // Lay binh luan cua san pham
-        // $comments = $this->commentModel->getById($id);
-        // if($comments != false) {
-        //     $data['comments'] = $comments;
-        // } else {
-        //     $data['comments'] = "Chưa có đánh giá nào";
-        // }
+        // Lay binh luan cua san pham
+        $comments = $this->commentModel->getById($id);
+        if($comments != false) {
+            $data['comments'] = $comments;
+        } else {
+            $data['comments'] = "Chưa có đánh giá nào";
+        }
         
-        // // Lay chi tiet san pham
-        // $products = $this->productModel->getById($id);
-        // $data['products'] = $products;
+        // Lay chi tiet san pham
+        $products = $this->productModel->getById($id);
+        $data['products'] = $products;
 
-        // // Lay san pham cung loai
-        // $productsSame = $this->productModel->getByIdCategory($data['products']['id_product_type']);
-        // $data['productsSame'] = $productsSame;
+        // Lay san pham cung loai
+        $productsSame = $this->productModel->getByIdCategory($data['products']['id_product_type']);
+        $data['productsSame'] = $productsSame;
         
-        $data['session'] = $_SESSION['user'];
-        echo '<pre>';
-        print_r($_SESSION['user']['id']);
-        echo '</pre>';
+        // $data['session'] = $_SESSION['user'];
+        // echo '<pre>';
+        // print_r($_SESSION['user']['id']);
+        // echo '</pre>';
 
-        // $this->view("/products/details", $data);
+        $this->view("/products/details", $data);
     }
 
 
