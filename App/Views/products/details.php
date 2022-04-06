@@ -94,28 +94,30 @@
     <!-- Commnet -->
     <div class="small-container">
         <h2 class="title row cmt-tittle">
-            oooo-DANH GIA SAN PHAM-oooo
+            ĐÁNH GIÁ SẢN PHẨM
         </h2>
        
             <?php if($_SESSION) : ?>
-                <div class="container-star">
+                <span>
+
+                <div onload = "loadComment()" class="container-star">
                     <div class="container_post">
                         <div class="container_post-text">Cảm ơn bạn đánh giá!</div>
                     </div>
                         <div class="container_star-widget">
-                            <input type="radio" name="rate" class="rank-star" id="rate-5">
+                            <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-5">
                             <label for="rate-5" class="fa fa-star"></label>
 
-                            <input type="radio" name="rate" class="rank-star" id="rate-4">
+                            <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-4">
                             <label for="rate-4" class="fa fa-star"></label>
 
-                            <input type="radio" name="rate" class="rank-star" id="rate-3">
+                            <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-3">
                             <label for="rate-3" class="fa fa-star"></label>
 
-                            <input type="radio" name="rate" class="rank-star" id="rate-2">
+                            <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-2">
                             <label for="rate-2" class="fa fa-star"></label>
 
-                            <input type="radio" name="rate" class="rank-star" id="rate-1">
+                            <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-1">
                             <label for="rate-1" class="fa fa-star"></label>
                             
                                 <form class="container_star-widget-form" action="<?= DOCUMENT_ROOT ?>/products/evaluation/<?= $data['products']['id'] ?>" method="post" enctype="multipart/form-data">
@@ -135,6 +137,7 @@
                                 </form>
                         </div>
                 </div>
+                </span>
             <?php endif; ?>
        
         <br>
@@ -157,7 +160,7 @@
                         </div>
                         <div><?= $comment['date'] ?></div>
 
-                        <div class="
+                        <div onclick = "editComment()" id="editComment" class="
                             <?php if(isset($_SESSION['user']['id'])) : ?>
                                 <?php if($_SESSION['user']['id'] == $comment['id_user']) : ?>
                                     <?= "user-cmt-edit" . $comment['id'] ?>
@@ -187,7 +190,15 @@
     <!-- footer -->
     <?php require_once(VIEW . '/shared/footer.php') ?>
     <script>
-        alert("BAN DA BINH LUAN SAN PHAM NAY ROI");
+        // alert("BAN DA BINH LUAN SAN PHAM NAY ROI");
+        function loadComment() {
+            var containerStar = document.querySelector(".container-star");
+            containerStar.style.display = "none";
+        }
+        function editComment() {
+            var containerStar = document.querySelector(".container-star");
+            containerStar.style.display = "block";
+        }
     </script>
     <!-- js for toggle nemu -->
     <script>
@@ -223,26 +234,25 @@
     <!-- js for comment -->
     <!-- Lấy id cmt ra gắn vào id class để cho user sưa cmt lại -->
     <script>
-        const btn = document.querySelector(".form-button");
-        const post = document.querySelector(".container_post");
-        const widget = document.querySelector(".container_star-widget");
+            const btn = document.querySelector(".form-button");
+            const post = document.querySelector(".container_post");
+            const widget = document.querySelector(".container_star-widget");
 
-        <?php foreach ($data['comments'] as $index => $comment) : ?>
-            <?php if($_SESSION['user']['id'] == $comment['id_user']) : ?>
-                const editBtn = document.querySelector("<?= ".user-cmt-edit" . $comment['id']; ?>");
-            <?php endif; ?>
-        <?php endforeach; ?>
-
-        console.log("Bat  dau");
-        btn.onclick = () => {
-            widget.style.display = "none";
-            post.style.display = "block";
-            editBtn.onclick = () => {
-                widget.style.display = "block";
-                post.style.display = "none";
-            }
-            return false;
-        }
+            <?php foreach ($data['comments'] as $index => $comment) : ?>
+                <?php if($_SESSION['user']['id'] == $comment['id_user']) : ?>
+                    const <?= "editBtn" . $comment['id'] ?> = document.querySelector("<?= ".user-cmt-edit" . $comment['id']; ?>");
+                <?php endif; ?>
+                // console.log("Bat  dau");
+                btn.onclick = () => {
+                    widget.style.display = "none";
+                    post.style.display = "block";
+                    <?= "editBtn" . $comment['id'] ?>.onclick = () => {
+                        widget.style.display = "block";
+                        post.style.display = "none";
+                    }
+                    return false;
+                }
+            <?php endforeach; ?>
     </script>
     <!-- js for cmt -->
     <script>
@@ -304,7 +314,7 @@
             }
             // console.log(cmt);
         }
-        Comment();
+        // Comment();
     </script>
 
 </body>
