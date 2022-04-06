@@ -43,15 +43,7 @@
                 <p><a href="<?= DOCUMENT_ROOT ?>">Trang chủ</a> / <a href="<?= DOCUMENT_ROOT ?>/products">Sản phẩm</a></p>
                 <h1 style="font-size: 35px; line-height: 38px"><?= $data['products']['name'] ?></h1>
                 <h4><?= number_format($data['products']['price'], 0, '', ',') ?>đ</h4>
-                <!-- <select name="" id="">
-                    <option value="">Select Size</option>
-                    <option value="">XXL</option>
-                    <option value="">XL</option>
-                    <option value="">Large</option>
-                    <option value="">Medium</option>
-                    <option value="">Small</option>
-                </select> -->
-                <!-- <input type="number" value="1"> -->
+                <input type="number" value="1" min="1">
                 <a style="cursor: pointer" onclick="addToCart(<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : 0 ?>, <?= $data['products']['id'] ?>)" class="btn">+Thêm vào giỏ hàng</a>
                 <h3>Mô tả sản phẩm <i class="fa fa-indent"></i> </h3>
                 <br>
@@ -98,46 +90,46 @@
         </h2>
        
             <?php if($_SESSION) : ?>
-                <span>
-
                 <div onload = "loadComment()" class="container-star">
+
                     <div class="container_post">
                         <div class="container_post-text">Cảm ơn bạn đánh giá!</div>
                     </div>
-                        <div class="container_star-widget">
-                            <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-5">
-                            <label for="rate-5" class="fa fa-star"></label>
 
-                            <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-4">
-                            <label for="rate-4" class="fa fa-star"></label>
+                    <div class="container_star-widget">
+                        <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-5">
+                        <label for="rate-5" class="fa fa-star"></label>
 
-                            <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-3">
-                            <label for="rate-3" class="fa fa-star"></label>
+                        <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-4">
+                        <label for="rate-4" class="fa fa-star"></label>
 
-                            <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-2">
-                            <label for="rate-2" class="fa fa-star"></label>
+                        <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-3">
+                        <label for="rate-3" class="fa fa-star"></label>
 
-                            <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-1">
-                            <label for="rate-1" class="fa fa-star"></label>
+                        <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-2">
+                        <label for="rate-2" class="fa fa-star"></label>
+
+                        <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-1">
+                        <label for="rate-1" class="fa fa-star"></label>
                             
-                                <form class="container_star-widget-form" action="<?= DOCUMENT_ROOT ?>/products/evaluation/<?= $data['products']['id'] ?>" method="post" enctype="multipart/form-data">
-                                    <input id="form-star-input" hidden name="star-rank" value="0">
-                                    <header class="cmt-like"></header>
-                                    <span hidden class="form-cmt-rank" style="color: #fff;">
-                                    </span>
-                                    <div class="textarea">
-                                        <textarea name="content" id="" cols="30" placeholder="Nhận xét của bạn ... "></textarea>
-                                    </div>
+                        <form class="container_star-widget-form" action="<?= DOCUMENT_ROOT ?>/products/evaluation/<?= $data['products']['id'] ?>" method="post" enctype="multipart/form-data">
+                            <input id="form-star-input" hidden name="star-rank" value="0">
+                            <header class="cmt-like"></header>
+                            <span hidden class="form-cmt-rank" style="color: #fff;">
+                            </span>
+                            <div class="textarea">
+                                <textarea name="content" id="" cols="30" placeholder="Nhận xét của bạn ... "></textarea>
+                            </div>
 
-                                    <div class="form-btn" type="submit" disabled>
-                                        <button class="form-button">
-                                            Post
-                                        </button>
-                                    </div>
-                                </form>
-                        </div>
+                            <div class="form-btn" type="submit" disabled>
+                                <button class="form-button">
+                                        Post
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
                 </div>
-                </span>
             <?php endif; ?>
        
         <br>
@@ -189,47 +181,13 @@
 
     <!-- footer -->
     <?php require_once(VIEW . '/shared/footer.php') ?>
-    <script>
-        // alert("BAN DA BINH LUAN SAN PHAM NAY ROI");
-        function loadComment() {
-            var containerStar = document.querySelector(".container-star");
-            containerStar.style.display = "none";
-        }
-        function editComment() {
-            var containerStar = document.querySelector(".container-star");
-            containerStar.style.display = "block";
-        }
-    </script>
-    <!-- js for toggle nemu -->
-    <script>
-        var MenuItems = document.getElementById("MenuItems");
-        MenuItems.style.maxHeight = "0px";
 
-        function menutoggle() {
-            if (MenuItems.style.maxHeight == "0px") {
-                MenuItems.style.maxHeight = "200px";
-            } else {
-                MenuItems.style.maxHeight = "0px";
-            }
-        }
-    </script>
+<!--###############################################################################################################################################--->
+    
+    <!-- js for toggle nemu -->
+    <script src="<?= PUBLIC_URL ?>/js/menuToggle.js"></script>
     <!-- js for product gallery -->
-    <script>
-        var ProductImg = document.getElementById("ProductImg");
-        var SmallImg = document.getElementsByClassName("small-img");
-        SmallImg[0].onclick = function() {
-            ProductImg.src = SmallImg[0].src;
-        }
-        SmallImg[1].onclick = function() {
-            ProductImg.src = SmallImg[1].src;
-        }
-        SmallImg[2].onclick = function() {
-            ProductImg.src = SmallImg[2].src;
-        }
-        SmallImg[3].onclick = function() {
-            ProductImg.src = SmallImg[3].src;
-        }
-    </script>
+    <script src="<?= PUBLIC_URL ?>/js/productGallery.js"></script>
 
     <!-- js for comment -->
     <!-- Lấy id cmt ra gắn vào id class để cho user sưa cmt lại -->
@@ -254,7 +212,8 @@
                 }
             <?php endforeach; ?>
     </script>
-    <!-- js for cmt -->
+
+    <!-- Get value user star rank -->
     <script>
         star_1 = document.getElementById("rate-1");
         star_2 = document.getElementById("rate-2");
@@ -284,6 +243,7 @@
         }
     </script>
 
+    <!-- Checked star-->
     <script>
         function Comment() {
             var cmt = parseInt(document.getElementById("user-cmt-star").innerHTML);
@@ -314,8 +274,23 @@
             }
             // console.log(cmt);
         }
-        // Comment();
+        Comment();
     </script>
+
+    <!-- Hidden form comment -->
+    <script>
+        // alert("BAN DA BINH LUAN SAN PHAM NAY ROI");
+        function loadComment() {
+            var containerStar = document.querySelector(".container-star");
+            containerStar.style.display = "none";
+        }
+        function editComment() {
+            var containerStar = document.querySelector(".container-star");
+            containerStar.style.display = "block";
+        }
+    </script>
+
+<!--###############################################################################################################################################--->
 
 </body>
 
