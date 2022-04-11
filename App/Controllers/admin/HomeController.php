@@ -8,12 +8,14 @@ class HomeController extends Controller{
     private $categoryModel;
     private $orderModel;
     private $userModel;
+    private $commentModel;
 
     function __construct(){
         $this->orderModel = $this->model('OrderModel');
         $this->userModel = $this->model('UserModel');
         $this->categoryModel = $this->model('CategoryModel');
         $this->productModel = $this->model('ProductModel');
+        $this->commentModel = $this->model('CommentModel');
     }
 
     function Index() {
@@ -29,6 +31,9 @@ class HomeController extends Controller{
 
         $products = $this->productModel->getAmount();
         $data['products'] = $products[0]['amount'];
+
+        $comments = $this->commentModel->getAmount();
+        $data['comments'] = $comments[0]['amount'];
 
         // echo '<pre>';
         // print_r($data);

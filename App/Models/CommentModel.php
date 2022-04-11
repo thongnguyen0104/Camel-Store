@@ -67,4 +67,16 @@ class CommentModel extends Database {
             return true;
         }
     }
+
+    function getAmount()
+    {
+        $sql = "SELECT COUNT(*) amount FROM COMMENTS";
+        $result = $this->db->query($sql);
+        
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
 }

@@ -42,6 +42,7 @@
             <div class="col-2">
                 <p><a href="<?= DOCUMENT_ROOT ?>">Trang chủ</a> / <a href="<?= DOCUMENT_ROOT ?>/products">Sản phẩm</a></p>
                 <h1 style="font-size: 35px; line-height: 38px"><?= $data['products']['name'] ?></h1>
+                <!-- <span class="giamgia"><?= number_format($data['products']['price'], 0, '', ',') ?>đ</span> -->
                 <h4><?= number_format($data['products']['price'], 0, '', ',') ?>đ</h4>
                 <input type="number" value="1" min="1">
                 <a style="cursor: pointer" onclick="addToCart(<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : 0 ?>, <?= $data['products']['id'] ?>)" class="btn">+Thêm vào giỏ hàng</a>
@@ -76,6 +77,7 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-o"></i>
                         </div>
+                        <span class="giamgia"><?= number_format($product['price'], 0, '', ',') ?>đ</span>
                         <p><?= number_format($product['price'], 0, '', ',') ?>đ</p>
                     </a>
                 </div>
@@ -128,7 +130,6 @@
                             </div>
                         </form>
                     </div>
-                    
                 </div>
             <?php endif; ?>
        

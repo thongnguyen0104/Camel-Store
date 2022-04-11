@@ -27,6 +27,8 @@
 }
 .giamgia {
     text-decoration: line-through;
+    font-size: 13px;
+    opacity: 0.5;
 }
 
 .container-star {
