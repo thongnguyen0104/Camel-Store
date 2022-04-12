@@ -4,28 +4,16 @@ use App\Core\Database;
 
 class CommentModel extends Database {
 
-    function all($page = 0, $limit = 16) {
-        
-        if($page === 0) {
-            $sql = "SELECT * FROM PRODUCTS";
-            $result = $this->db->query($sql);
+    function all() {
 
-            if($result->num_rows > 0) {
-                return $result->fetch_all(MYSQLI_ASSOC);
-            } else {
-                return false;
-            }
+        $sql = "SELECT cmt.id, cmt.content, users.`name` user_name, prt.`name` prt_name, cmt.star, cmt.date
+                FROM COMMENTS cmt JOIN USERS ON cmt.id_user=users.id JOIN PRODUCTS prt ON cmt.id_product=prt.id ORDER BY cmt.id";
+        $result = $this->db->query($sql);
+
+        if($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
         } else {
-            $index = ($page -1) * $limit;
-            $sql = "SELECT * FROM PRODUCTS order by id asc LIMIT $index, $limit";
-
-            $result = $this->db->query($sql);
-
-            if($result->num_rows > 0) {
-                return $result->fetch_all(MYSQLI_ASSOC);
-            } else {
-                return false;
-            }
+            return false;
         }
     }
 
@@ -60,8 +48,7 @@ class CommentModel extends Database {
         $stmt->execute();
         $result = $stmt->affected_rows;
 
-        if ($result < 1
-        ) {
+        if ($result < 1) {
             return false;
         } else {
             return true;

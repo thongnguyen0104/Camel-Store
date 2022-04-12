@@ -57,7 +57,6 @@ class CommentController extends Controller {
         echo '<pre>';
         print_r($_POST);
         echo '</pre>';
-        hk 
     }
 
 }

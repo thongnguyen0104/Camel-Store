@@ -79,7 +79,6 @@ class ProductsController extends Controller {
 
         $data['products'] = $products;
         
-
         // echo '<pre>';
         // print_r($data);
         // echo '</pre>';

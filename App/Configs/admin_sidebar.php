@@ -30,6 +30,12 @@
             'name' => 'users',
             'icon' => 'fas fa-user-friends',
             'link' => DOCUMENT_ROOT . '/admin/users',
+         ],
+         'comments' => [
+            'title' => 'Quản lý bình luận',
+            'name' => 'comments',
+            'icon' => 'fa fa-comment',
+            'link' => DOCUMENT_ROOT . '/admin/comments',
          ]
     ];
 ?>

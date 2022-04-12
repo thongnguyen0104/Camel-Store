@@ -1,6 +1,6 @@
  <!-- /.content-wrapper -->
  <footer class="main-footer">
-   <strong>Copyright &copy; 2021 <a href="<?= DOCUMENT_ROOT ?>">Camel-Store</a>.</strong>
+   <strong>Copyright &copy; 2022 <a href="<?= DOCUMENT_ROOT ?>">Camel-Store</a>.</strong>
  </footer>
 
  <!-- Control Sidebar -->

@@ -42,7 +42,7 @@
             <div class="col-2">
                 <p><a href="<?= DOCUMENT_ROOT ?>">Trang chủ</a> / <a href="<?= DOCUMENT_ROOT ?>/products">Sản phẩm</a></p>
                 <h1 style="font-size: 35px; line-height: 38px"><?= $data['products']['name'] ?></h1>
-                <!-- <span class="giamgia"><?= number_format($data['products']['price'], 0, '', ',') ?>đ</span> -->
+                <span class="giamgia"><?= number_format($data['products']['price'], 0, '', ',') ?>đ</span>
                 <h4><?= number_format($data['products']['price'], 0, '', ',') ?>đ</h4>
                 <input type="number" value="1" min="1">
                 <a style="cursor: pointer" onclick="addToCart(<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : 0 ?>, <?= $data['products']['id'] ?>)" class="btn">+Thêm vào giỏ hàng</a>
@@ -112,7 +112,7 @@
                         <label for="rate-2" class="fa fa-star"></label>
 
                         <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-1">
-                        <label for="rate-1" class="fa fa-star"></label>
+                        <label for="rate-1" class="fa fa-star"></label> n
                             
                         <form class="container_star-widget-form" action="<?= DOCUMENT_ROOT ?>/products/evaluation/<?= $data['products']['id'] ?>" method="post" enctype="multipart/form-data">
                             <input id="form-star-input" hidden name="star-rank" value="0">

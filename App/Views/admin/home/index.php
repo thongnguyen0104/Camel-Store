@@ -73,7 +73,7 @@
              <!-- ./col -->
              <div class="col-lg-3 col-6">
                  <!-- small box -->
-                 <div class="small-box bg-danger">
+                 <div class="small-box bg-success">
                      <div class="inner">
                          <h3>
                              <?= $data['comments'] ?>
@@ -84,7 +84,7 @@
                      <div class="icon">
                          <i class="ion ion-pie-graph"></i>
                      </div>
-                     <a href="<?= DOCUMENT_ROOT . "/admin/users" ?>" class="small-box-footer">Xem bình luận <i class="fas fa-arrow-circle-right"></i></a>
+                     <a href="<?= DOCUMENT_ROOT . "/admin/comments" ?>" class="small-box-footer">Xem bình luận <i class="fas fa-arrow-circle-right"></i></a>
                  </div>
              </div>
              <!-- ./col -->
