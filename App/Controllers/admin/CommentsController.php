@@ -23,21 +23,19 @@ class CommentsController extends Controller{
         $this->view('/admin/comments/index', $data);
     }
 
-    // function delete($id)
-    // {
-    //     // var_dump(($id));
-    //     $result = $this->commentModel->delete($id);
+    function delete($id)
+    {
+        var_dump(($id));
+        $result = $this->commentModel->delete($id);
 
-    //     if ($result) {
-    //         $_SESSION['message'] = "Xóa loại sản phẩm thành công!";
-    //         header("Location: " . DOCUMENT_ROOT . "/admin/categories");
-    //     } else {
-    //         if (isset($_SERVER["HTTP_REFERER"])) {
-    //             header("Location: " . $_SERVER["HTTP_REFERER"]);
-    //         }
-    //     }
-    // }
-
-    
+        if ($result) {
+            $_SESSION['message'] = "Xóa loại bình luận thành công!";
+            header("Location: " . DOCUMENT_ROOT . "/admin/comments");
+        } else {
+            if (isset($_SERVER["HTTP_REFERER"])) {
+                header("Location: " . $_SERVER["HTTP_REFERER"]);
+            }
+        }
+    }
 
 }

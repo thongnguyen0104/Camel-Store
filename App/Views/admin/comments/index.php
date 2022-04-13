@@ -60,27 +60,27 @@
                         <td><?= $comment['star'] ?></td>
                         <td><?= $comment['date'] ?></td>
                         <td>
-                          <div class="btn-group" role="group" aria-label="Basic example">
-                            <a href="<?= DOCUMENT_ROOT ?>/admin/users/edit/<?= $comment['id'] ?>" type="button" class="btn btn-info">Xem</a>
-                          </div>
+                          <!-- <div class="btn-group" role="group" aria-label="Basic example">
+                            <a href="<?= DOCUMENT_ROOT ?>/admin/comments/edit/<?= $comment['id'] ?>" type="button" class="btn btn-info">Xem</a>
+                          </div> -->
                           <!-- Button trigger modal -->
-                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal<?= $user['id'] ?>">
+                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal<?= $comment['id'] ?>">
                             Xóa
                           </button>
 
                           <!-- modal -->
-                          <div class="modal fade" id="exampleModal<?= $user['id'] ?>" aria-labelledby="my_modalLabel">
+                          <div class="modal fade" id="exampleModal<?= $comment['id'] ?>" aria-labelledby="my_modalLabel">
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h2 class="modal-title" id="exampleModalLongTitle<?= $user['id'] ?>">Xác nhận xóa</h2>
+                                  <h2 class="modal-title" id="exampleModalLongTitle<?= $comment['id'] ?>">Xác nhận xóa</h2>
                                 </div>
                                 <div class="modal-body">
-                                  <p><b>Xóa: </b> <?= $user['name'] ?></p>
+                                  <p><b>Xóa bình luận thứ </b> <?= $comment['id'] ?></p>
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-success" data-dismiss="modal">Hủy</button>
-                                  <a href="<?= DOCUMENT_ROOT ?>/admin/users/delete/<?= $user['id'] ?>"><button type="button" class="btn btn-danger">Xóa</button></a>
+                                  <a href="<?= DOCUMENT_ROOT ?>/admin/comments/delete/<?= $comment['id'] ?>"><button type="button" class="btn btn-danger">Xóa</button></a>
                                 </div>
                               </div>
                             </div>

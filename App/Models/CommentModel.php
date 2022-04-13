@@ -66,4 +66,17 @@ class CommentModel extends Database {
             return false;
         }
     }
+
+    function delete($id)
+    {
+        $stmt = $this->db->prepare("DELETE FROM COMMENTS WHERE  id = ?");
+        $stmt->bind_param("i", $id);
+
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            return true;
+        }
+        return false;
+    }
 }
