@@ -14,6 +14,37 @@
 </head>
 
 <body>
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+    var chatbox = document.getElementById('fb-customer-chat');
+    chatbox.setAttribute("page_id", "111412526938504");
+    chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+    window.fbAsyncInit = function() {
+        FB.init({
+        xfbml            : true,
+        version          : 'v13.0'
+        });
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    
     <!-- header -->
     <div id="toast">
         <div id="img">Icon</div>
@@ -169,14 +200,21 @@
                         <img src="<?= IMAGES_PRODUCTS_URL ?>/<?= $product['image1'] ?>" alt="product">
                         <h4> <?= $product['name'] ?> </h4>
                         <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
+                            <?php for ($i=1; $i <= $product['avgStar']; $i++) : ?>
+                                <i class="fa fa-star"></i>
+                            <?php endfor;?>
+
+                            <?php for ($i = floor($product['avgStar']); $i < ceil($product['avgStar']); $i++) : ?>
+                                <i class="fa fa-star-half-o"></i>
+                            <?php endfor;?>
+
+                            <?php for ($i = ceil($product['avgStar']); $i < 5; $i++) : ?>
+                                <i class="fa fa-star-o"></i>
+                            <?php endfor;?>
+                            <!-- <span><?= $product['avgStar']?> sao</span> -->
                         </div>
                         <span style="color: #999; font-size: 13px; text-decoration: line-through;"><?= number_format($product['price'], 0, '', ',') ?>đ</span>
-                        <p style="color: #e4270e;"><?= number_format(($product['price'] * 0.9), 0, '', ',') ?>đ</p>
+                        <p style="color: #e4270e;"><?= (number_format(($product['price'] * ($data['date_time'] < $product['start_date'] ? 100 : ($product['percent'] == 0 ? 100 : $product['percent'])) /100), 0, '', ',')) ?>đ</p>
                     </a>
                 </div>
             <?php endforeach; ?>

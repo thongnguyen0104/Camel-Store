@@ -6,11 +6,12 @@ class ProductsController extends Controller{
 
     private $productModel;
     private $categoryModel;
+    private $promotionModel;
 
     function __construct(){
         $this->productModel = $this->model('ProductModel');
-
         $this->categoryModel = $this->model('CategoryModel');
+        $this->promotionModel = $this->model('PromotionModel');
     }
 
     function Index(){
@@ -86,10 +87,11 @@ class ProductsController extends Controller{
             header("Location: " . DOCUMENT_ROOT . "/admin/products");
         }
         $categories = $this->categoryModel->all();
+        $promotions = $this->promotionModel->all();
 
         $data['categories'] = $categories;
-
         $data['product'] = $product;
+        $data['promotions'] = $promotions;
 
         $this->view('/admin/products/edit', $data);
     }
@@ -100,7 +102,7 @@ class ProductsController extends Controller{
            header("Location: " . DOCUMENT_ROOT . "/admin");
        }
 
-        // $data = $_POST;
+        $data = $_POST;
 
         $product = $this->productModel->getById($id);
 
@@ -134,11 +136,12 @@ class ProductsController extends Controller{
         $data['categoryId'] = $_POST['categoryId'];
         $data['price'] = $_POST['price'];
         $data['description'] = $_POST['description'];
+        $data['promotionId'] = $_POST['promotionId'];
 
         // echo '</pre>';
         // print_r ($data);
         // echo '</pre>';
-        // die();
+        // // die();
 
         $result = $this->productModel->update($data);
         if($result){

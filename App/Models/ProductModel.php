@@ -17,7 +17,7 @@ class ProductModel extends Database {
             }
         } else {
             $index = ($page -1) * $limit;
-            $sql = "SELECT * FROM PRODUCTS order by id asc LIMIT $index, $limit";
+            $sql = "SELECT prt.id, prt.`name`, prt.price, prt.image1, pro.percent, pro.start_date, pro.end_date FROM products prt JOIN promotion pro ON prt.id_promotion=pro.id order by prt.id asc LIMIT $index, $limit";
 
             $result = $this->db->query($sql);
 
@@ -68,7 +68,7 @@ class ProductModel extends Database {
 
         $keyword = '%' . $keyword . '%';
         $index = ($page -1) * $limit;
-        $stmt = $this->db->prepare("SELECT * FROM PRODUCTS WHERE name like '$keyword' order by id asc LIMIT $index, $limit ");
+        $stmt = $this->db->prepare("SELECT prt.id, prt.`name`, prt.price, prt.image1, pro.percent, pro.start_date, pro.end_date FROM products prt JOIN promotion pro ON prt.id_promotion=pro.id WHERE prt.name like '$keyword' order by id asc LIMIT $index, $limit ");
 
         $stmt->execute();
 
@@ -83,8 +83,8 @@ class ProductModel extends Database {
 
     function getByIdCategory($id) {
 
-        $stmt = $this->db->prepare("SELECT * FROM PRODUCTS WHERE id_product_type = ? ");
-
+        $stmt = $this->db->prepare("SELECT prt.id, prt.`name`, prt.price, prt.image1, pro.percent, pro.start_date, pro.end_date FROM products prt JOIN promotion pro ON prt.id_promotion=pro.id WHERE id_product_type = ? order by prt.id asc");
+        
         $stmt->bind_param("i", $id);
 
         $stmt->execute();
@@ -159,9 +159,10 @@ class ProductModel extends Database {
         $imageName3 = $data['image3'];
         $imageName4 = $data['image4'];
         $imageName5 = $data['image5'];
+        $promotionId = $data['promotionId'];
 
-        $stmt = $this->db->prepare("UPDATE PRODUCTS SET name = ?, id_product_type = ?, price = ?, description = ?, image1 = ?, image2 = ?, image3 = ?, image4 = ?, image5 = ? WHERE id = ?");
-        $stmt->bind_param("siissssssi", $name, $categoryId, $price, $description, $imageName1, $imageName2, $imageName3, $imageName4, $imageName5, $id);
+        $stmt = $this->db->prepare("UPDATE PRODUCTS SET name = ?, id_product_type = ?, price = ?, description = ?, image1 = ?, image2 = ?, image3 = ?, image4 = ?, image5 = ?, id_promotion = ? WHERE id = ?");
+        $stmt->bind_param("siissssssii", $name, $categoryId, $price, $description, $imageName1, $imageName2, $imageName3, $imageName4, $imageName5, $promotionId, $id);
 
         $stmt->execute();
         $result = $stmt->affected_rows;

@@ -27,7 +27,7 @@
                     <div class="form-container">
                         <div class="form-btn">
                             <?php (!isset($data['errorAu'])) ? "onload='login()'" : "onclick='login()'" ?>
-                            <span onclick="login()"><b>Đăng nhập</b></span>
+                            <span onclick="login()"><b>Đăng <br> nhập</b></span>
                             <span onclick="register()"><b>Đăng <br> ký</b></span>
                             <hr id="Indicator">
                         </div>

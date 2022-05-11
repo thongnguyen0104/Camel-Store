@@ -43,13 +43,21 @@
                             <img src="<?= IMAGES_PRODUCTS_URL ?>/<?= $product['image1'] ?>" alt="product">
                             <h4> <?= $product['name'] ?> </h4>
                             <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
+                                <?php for ($i=1; $i <= $product['avgStar']; $i++) : ?>
+                                    <i class="fa fa-star"></i>
+                                <?php endfor;?>
+
+                                <?php for ($i = floor($product['avgStar']); $i < ceil($product['avgStar']); $i++) : ?>
+                                    <i class="fa fa-star-half-o"></i>
+                                <?php endfor;?>
+
+                                <?php for ($i = ceil($product['avgStar']); $i < 5; $i++) : ?>
+                                    <i class="fa fa-star-o"></i>
+                                <?php endfor;?>
                             </div>
-                            <p><?= number_format($product['price'], 0, '', ',') ?>đ</p>
+                            <span style="color: #999; font-size: 13px; text-decoration: line-through;"><?= number_format($product['price'], 0, '', ',') ?>đ</span>
+                            <p style="color: #e4270e;"><?= (number_format(($product['price'] * ($data['date_time'] < $product['start_date'] ? 100 : ($product['percent'] == 0 ? 100 : $product['percent'])) /100), 0, '', ',')) ?>đ</p>
+                            <!-- <p><?= number_format($product['price'], 0, '', ',') ?>đ</p> -->
                         </a>
                     </div>
                 <?php endforeach; ?>

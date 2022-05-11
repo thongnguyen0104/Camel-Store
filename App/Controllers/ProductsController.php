@@ -41,6 +41,23 @@ class ProductsController extends Controller {
         $categories = $this->categoryModel->all();
         $data['categories'] = $categories;
 
+        $data['date_time'] = date('Y-m-d H:i:s');
+        $data['starProduct'] = $this->commentModel->getStarProduct();
+
+        foreach ($data['products'] as $index => $product) {
+            $totalStar = 0.0;
+            $avgStar = 0.0;
+            $count = 0;
+            foreach ($data['starProduct'] as $starIndex => $starProduct) {
+                if($product['id'] == $starProduct['id']) {
+                    $totalStar = $totalStar + $starProduct['star'];
+                    $count ++;
+                }
+            }
+            $avgStar = $totalStar / $count;
+            $data['products'][$index]['avgStar'] = $avgStar;
+        }
+
         // echo '<pre>';
         // print_r($data);
         // echo '</pre>';
@@ -74,11 +91,29 @@ class ProductsController extends Controller {
         // $keyword = $_GET['keyword'];
         // $products = $this->productModel->getByKeyword($keyword);
         $products = $this->productModel->getByKeywordLimit($keyword, $page, $limit);
+        $data['products'] = $products;
 
         $data['keyword'] = $keyword;
 
-        $data['products'] = $products;
-        
+        $data['date_time'] = date('Y-m-d H:i:s');
+        $data['starProduct'] = $this->commentModel->getStarProduct();
+
+        if ($data['products'] != false) {
+            foreach ($data['products'] as $index => $product) {
+                $totalStar = 0.0;
+                $avgStar = 0.0;
+                $count = 0;
+                foreach ($data['starProduct'] as $starIndex => $starProduct) {
+                    if($product['id'] == $starProduct['id']) {
+                        $totalStar = $totalStar + $starProduct['star'];
+                        $count ++;
+                    }
+                }
+                $avgStar = $totalStar / $count;
+                $data['products'][$index]['avgStar'] = $avgStar;
+            }
+        }
+
         // echo '<pre>';
         // print_r($data);
         // echo '</pre>';
@@ -118,14 +153,30 @@ class ProductsController extends Controller {
     function Categories($id) {
 
         $products = $this->productModel->getByIdCategory($id);
-        $categories = $this->categoryModel->all();
-
         $data['products'] = $products;
-        $data['categories'] = $categories;
-        
 
+        $categories = $this->categoryModel->all();
+        $data['categories'] = $categories;
+
+        $data['date_time'] = date('Y-m-d H:i:s');
+        $data['starProducts'] = $this->commentModel->getStarProductByIdCategory($id);
+
+        foreach ($data['products'] as $index => $product) {
+            $totalStar = 0.0;
+            $avgStar = 0.0;
+            $count = 0;
+            foreach ($data['starProducts'] as $starIndex => $starProduct) {
+                if($product['id'] == $starProduct['id']) {
+                    $totalStar = $totalStar + $starProduct['star'];
+                    $count ++;
+                }
+            }
+            $avgStar = $totalStar / $count;
+            $data['products'][$index]['avgStar'] = $avgStar;
+        }
+        
         // echo '<pre>';
-        // print_r($data);
+        // print_r($data['starProducts']);
         // echo '</pre>';
 
         $this->view("/products/categories", $data);

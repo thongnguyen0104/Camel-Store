@@ -34,6 +34,34 @@ class CommentModel extends Database {
         }
     }
 
+    function getStarProduct() {
+        $sql = "SELECT prt.id, cmt.id id_cmt, cmt.star FROM products prt LEFT JOIN comments cmt ON prt.id = cmt.id_product ORDER BY prt.id";
+        $result = $this->db->query($sql);
+
+        if($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
+    function getStarProductByIdCategory($id) {
+
+        $stmt = $this->db->prepare("SELECT prt.id, cmt.id id_cmt, cmt.star FROM products prt LEFT JOIN comments cmt ON prt.id = cmt.id_product WHERE prt.id_product_type = ? order by prt.id asc");
+        
+        $stmt->bind_param("i", $id);
+
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        if($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return false;
+        }
+    }
+
     function store($data)
     {
         $content = $data['content'];

@@ -46,6 +46,9 @@
                 <tr>
                     <th>Sản phẩm</th>
                     <th>Số lượng</th>
+
+                    <th>Giá gốc</th>
+
                     <th>Tổng cộng</th>
                 </tr>
                     <?php if(isset($_SESSION['user'])) : ?>
@@ -57,14 +60,18 @@
                                             <img src="<?= IMAGES_PRODUCTS_URL ?>/<?=$product['image1']?>" alt="cart">
                                             <div class="cart-info__detail">
                                                 <p><?=$product['name']?></p>
-                                                <small class="cart-info__detail-price"><?=number_format($product['price'], 0, '', '')?>đ</small>
+                                                <small class="cart-info__detail-price"><?=number_format($product['reducePrice'], 0, '', '')?>đ</small>
                                                 <br>
                                                 <a href="<?= DOCUMENT_ROOT . '/cart/deleteInCart/' . $product['id'] ?>">Xóa</a>
                                             </div>
                                         </div>
                                     </td>
                                     <td> <input name="numOfProduct<?= $product['id'] ?>" class="cart-info-quantity" type="number" min="1" value="<?=$product['amount']?>"></td>
-                                    <td class="cart-info-price__single"><?=number_format(($product['price']*$product['amount']), 0, '', '')?></td>
+                                    
+                                    <td><?=number_format($product['price'], 0, '', ',')?></td>
+                                    
+                                    <td class="cart-info-price__single"></td>
+
                                 </tr>
                             <?php endforeach; ?>
                         <?php else: ?>

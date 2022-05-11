@@ -90,53 +90,23 @@
         <h2 class="title row cmt-tittle">
             ĐÁNH GIÁ SẢN PHẨM
         </h2>
-       
-            <?php if($_SESSION) : ?>
-                <div onload = "loadComment()" class="container-star">
+        <!-- <div class="row">
+            <div class="cmt-tittle">
+                Đánh giá trung bình của sản phẩm
+            </div>
+            <div style="display: inline-block;">
+                <i class="fa fa-star" style="color: orange;"></i>
+                <i class="fa fa-star" style="color: orange;"></i>
+                <i class="fa fa-star" style="color: orange;"></i>
+                <i class="fa fa-star" style="color: orange;"></i>
+                <i class="fa fa-star" style="color: orange;"></i>
+            </div>
+        </div> -->
 
-                    <div class="container_post">
-                        <div class="container_post-text">Cảm ơn bạn đánh giá!</div>
-                    </div>
-
-                    <div class="container_star-widget">
-                        <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-5">
-                        <label for="rate-5" class="fa fa-star"></label>
-
-                        <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-4">
-                        <label for="rate-4" class="fa fa-star"></label>
-
-                        <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-3">
-                        <label for="rate-3" class="fa fa-star"></label>
-
-                        <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-2">
-                        <label for="rate-2" class="fa fa-star"></label>
-
-                        <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-1">
-                        <label for="rate-1" class="fa fa-star"></label> n
-                            
-                        <form class="container_star-widget-form" action="<?= DOCUMENT_ROOT ?>/products/evaluation/<?= $data['products']['id'] ?>" method="post" enctype="multipart/form-data">
-                            <input id="form-star-input" hidden name="star-rank" value="0">
-                            <header class="cmt-like"></header>
-                            <span hidden class="form-cmt-rank" style="color: #fff;">
-                            </span>
-                            <div class="textarea">
-                                <textarea name="content" id="" cols="30" placeholder="Nhận xét của bạn ... "></textarea>
-                            </div>
-
-                            <div class="form-btn" type="submit" disabled>
-                                <button class="form-button">
-                                        Post
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            <?php endif; ?>
-       
         <br>
         <?php if ($data['comments'] != "Chưa có đánh giá nào") : ?>
             <?php foreach ($data['comments'] as $index => $comment) : ?>
-                <div class="small-container" style="border: 1px solid rgb(187, 183, 183);">
+                <div class="small-container" style="border-bottom: 1px solid rgb(187, 183, 183);">
                     <div class="row">
                         <div>
                             <img class="cmt-image" src="<?= USER_AVATAR_URL ?>/<?= ($comment['avatar'] !="") ? $comment['avatar'] :  "default/default-avatar.png" ?>" alt="user-image">
@@ -177,6 +147,52 @@
             </div>
         <?php endif; ?>
         <br>
+
+        <div class="row">
+            <?php if($_SESSION) : ?>
+                <div onload = "loadComment()" class="container-star">
+
+                    <div class="container_post">
+                        <div class="container_post-text">Cảm ơn bạn đánh giá!</div>
+                    </div>
+
+                    <div class="container_star-widget">
+                        <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-5">
+                        <label for="rate-5" class="fa fa-star"></label>
+
+                        <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-4">
+                        <label for="rate-4" class="fa fa-star"></label>
+
+                        <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-3">
+                        <label for="rate-3" class="fa fa-star"></label>
+
+                        <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-2">
+                        <label for="rate-2" class="fa fa-star"></label>
+
+                        <input onclick = "Comment()" type="radio" name="rate" class="rank-star" id="rate-1">
+                        <label for="rate-1" class="fa fa-star"></label>
+                            
+                        <form class="container_star-widget-form" action="<?= DOCUMENT_ROOT ?>/products/evaluation/<?= $data['products']['id'] ?>" method="post" enctype="multipart/form-data">
+                            <input id="form-star-input" hidden name="star-rank" value="0">
+                            <header class="cmt-like"></header>
+                            <span hidden class="form-cmt-rank" style="color: #fff;">
+                            </span>
+                            <div class="textarea">
+                                <textarea name="content" id="" cols="30" placeholder="Nhận xét của bạn ... "></textarea>
+                            </div>
+
+                            <div class="form-btn" type="submit" disabled>
+                                <button class="form-button">
+                                        THỰC HIỆN
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            <?php endif; ?>
+            
+        </div>
+
     </div>
 
 
@@ -191,6 +207,7 @@
     <script src="<?= PUBLIC_URL ?>/js/productGallery.js"></script>
 
     <!-- js for comment -->
+
     <!-- Lấy id cmt ra gắn vào id class để cho user sưa cmt lại -->
     <script>
             const btn = document.querySelector(".form-button");

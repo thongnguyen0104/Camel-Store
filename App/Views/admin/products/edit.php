@@ -46,32 +46,43 @@
                             <input value="<?= $data['product']['price'] ?>" name="price" type="number" class="form-control" id="price" placeholder="Product-price" required>
                         </div>
                         <div class="form-group col">
-                            <label for="description">Mô tả</label>
-                            <textarea class="form-control" name="description" id="description" required><?= $data['product']['description'] ?></textarea>
+                            <label for="promotion">Khuyến mãi</label>
+                            <select name="promotionId" class="form-control" id="promotion" required>
+                                <?php foreach ($data['promotions'] as $index => $promotion) : ?>
+                                    <option value="<?= $promotion['id'] ?>" <?= $promotion['id'] == $data['product']['id_promotion'] ? "selected" : "" ?>><?= $promotion['name'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="form-group col-6">
-                            <b>Hình ảnh sản phẩm 1</b>
-                            <input type="file" name="image1">
+                        <div class="form-group col">
+                            <div class="form-group col-6">
+                                <b>Hình ảnh sản phẩm 1</b>
+                                <input type="file" name="image1">
+                            </div>
+                            <div class="form-group col-6">
+                                <b>Hình ảnh sản phẩm 2</b>
+                                <input type="file" name="image2">
+                            </div>
+                            <div class="form-group col-6">
+                                <b>Hình ảnh sản phẩm 3</b>
+                                <input type="file" name="image3">
+                            </div>
+                            <div class="form-group col-6">
+                                <b>Hình ảnh sản phẩm 4</b>
+                                <input type="file" name="image4">
+                            </div>
+                            <div class="form-group col-6">
+                                <b>Hình ảnh sản phẩm 5</b>
+                                <input type="file" name="image5">
+                            </div>
                         </div>
-                        <div class="form-group col-6">
-                            <b>Hình ảnh sản phẩm 2</b>
-                            <input type="file" name="image2">
+                        <div class="form-group col">
+                            <label for="description">Mô tả</label>
+                            <textarea class="form-control" name="description" id="description" required><?= $data['product']['description'] ?></textarea>
                         </div>
-                        <div class="form-group col-6">
-                            <b>Hình ảnh sản phẩm 3</b>
-                            <input type="file" name="image3">
-                        </div>
-                        <div class="form-group col-6">
-                            <b>Hình ảnh sản phẩm 4</b>
-                            <input type="file" name="image4">
-                        </div>
-                        <div class="form-group col-6">
-                            <b>Hình ảnh sản phẩm 5</b>
-                            <input type="file" name="image5">
-                        </div>
+                        
                     </div>
 
                 </div>

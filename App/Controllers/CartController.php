@@ -6,9 +6,12 @@ class CartController extends Controller {
 
     private $cartModel;
     private $orderModel;
+    private $productModel;
+
     function __construct() {
         $this->cartModel = $this->model('CartModel');
         $this->orderModel = $this->model('OrderModel');
+        $this->productModel = $this->model('ProductModel');
     }
 
     function index() {
@@ -17,9 +20,22 @@ class CartController extends Controller {
 
             $products = $this->cartModel->getProductByIdUser($data['user']['id']);
             $data['products'] = $products;
+
+            if ($data['products'] != false) {
+                foreach ($data['products'] as $index => $product) {
+                    $data['date_time'] = date('Y-m-d H:i:s');
+                    if ($product['start_date'] <= $data['date_time']) {
+                        $data['products'][$index]['reducePrice'] = $product['price'] * ($product['percent'] == 0 ? 100 : $product['percent']) / 100;
+                    } else {
+                        $data['products'][$index]['reducePrice'] = $product['price'];
+                    }
+                }
+            }
+
         } else {
              $data = [];
         }
+
         // echo '<pre>';
         // print_r($data);
         // echo '</pre>';
@@ -41,11 +57,23 @@ class CartController extends Controller {
 
     function deleteInCart($id) {
         if(isset($_SESSION['user'])) {
+
             $data['user'] = $_SESSION['user'];
             $result = $this->cartModel->deleteInCart($data['user']['id'], $id);
+
             if($result == true) {
                 $products = $this->cartModel->getProductByIdUser($data['user']['id']);
                 $data['products'] = $products;
+
+                if ($data['products'] != false) {
+                    foreach ($data['products'] as $index => $product) {
+                        $data['date_time'] = date('Y-m-d H:i:s');
+                        if ($product['start_date'] <= $data['date_time']) {
+                            $data['products'][$index]['reducePrice'] = $product['price'] * ($product['percent'] == 0 ? 100 : $product['percent']) / 100;
+                        }
+                    }
+                }
+
             } 
         } else {
              $data = [];
@@ -74,17 +102,37 @@ class CartController extends Controller {
             $productInCarts = [];
         }
 
+        $data['products'] = $productInCarts;
+
+        if ($data['products'] != false) {
+            foreach ($data['products'] as $index => $product) {
+                $data['date_time'] = date('Y-m-d H:i:s');
+                if ($product['start_date'] <= $data['date_time']) {
+                    $data['products'][$index]['reducePrice'] = $product['price'] * ($product['percent'] == 0 ? 100 : $product['percent']) / 100;
+                    $data['price'][] = $data['products'][$index]['reducePrice'];
+                } else {
+                    $data['price'][] = $product['price'];
+                }
+                // if ($product['start_date'] <= $data['date_time']) {
+                //     $data['products'][$index]['reducePrice'] = $product['price'] * ($product['percent'] == 0 ? 100 : $product['percent']) / 100;
+                // } else {
+                //     $data['price'][] = $product['price'];
+                // }
+            }
+        }
+
         foreach($productInCarts as $key => $product) {
             $id = $product['id'];
             $data['productId'][] = $id;
             $data['amount'][] = intval($_POST["numOfProduct$id"]);
-            $data['price'][] = $product['price'];
+            // $data['price'][] = $product['price'];
         }
 
         // echo '<pre>';
         // print_r($data);
         // echo '</pre>';
         // die();
+
         $result = $this->orderModel->store($data);
         if($result == true) {
             $productInCarts = $this->cartModel->deleteInCart($data['userId']);
@@ -92,7 +140,7 @@ class CartController extends Controller {
         // echo '<pre>';
         // print_r($data);
         // echo '</pre>';
-        header("Location:" . DOCUMENT_ROOT . "/home");
+        header("Location:" . DOCUMENT_ROOT . "/account/profile");
     }
 
 

@@ -161,7 +161,7 @@ class OrderModel extends Database {
     }
 
     function getOrderUser($id) {
-        $stmt = $this->db->prepare("SELECT O.id, O.order_date, O.delivery_date, O.id_user, O.id_status, O.address, O.phone, ST.name FROM ORDERS O JOIN STATUS ST ON O.id_status = ST.id WHERE O.id_user = ?");
+        $stmt = $this->db->prepare("SELECT O.id, O.order_date, O.delivery_date, O.id_user, O.id_status, O.address, O.phone, ST.name FROM ORDERS O JOIN STATUS ST ON O.id_status = ST.id WHERE O.id_user = ? order by O.id desc");
         $stmt->bind_param("i", $id);
 
         $stmt->execute();

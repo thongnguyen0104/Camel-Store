@@ -4,7 +4,6 @@ namespace App\Core;
 
 class Controller {
 
-
     function model($model) {
         if(file_exists(MODEL . DS . $model . '.php')) {
             require_once(MODEL . DS . $model . '.php');

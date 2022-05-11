@@ -108,7 +108,7 @@ class CartModel extends Database {
     }
 
     function getProductByIdUser($userId) {
-        $stmt = $this->db->prepare("SELECT * FROM CART CR JOIN PRODUCTS PR ON CR.id_product = PR.id WHERE CR.id_user = ?");
+        $stmt = $this->db->prepare("SELECT PR.id, PR.`name`, PR.price, PR.image1, CR.amount, PRO.percent, PRO.start_date, PRO.end_date, PRO.`check` FROM CART CR JOIN PRODUCTS PR ON CR.id_product = PR.id JOIN PROMOTION PRO ON PR.id_promotion = PRO.id WHERE CR.id_user = ?");
         $stmt->bind_param("i", $userId);
 
         $stmt->execute();
@@ -121,6 +121,21 @@ class CartModel extends Database {
             return false;
         }
     }
+
+    // function getProductByIdUser($userId) {
+    //     $stmt = $this->db->prepare("SELECT * FROM CART CR JOIN PRODUCTS PR ON CR.id_product = PR.id WHERE CR.id_user = ?");
+    //     $stmt->bind_param("i", $userId);
+
+    //     $stmt->execute();
+
+    //    $result = $stmt->get_result();
+
+    //     if($result->num_rows > 0) {
+    //         return $result->fetch_all(MYSQLI_ASSOC);
+    //     } else {
+    //         return false;
+    //     }
+    // }
 }
 
 ?>
