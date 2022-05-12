@@ -73,7 +73,7 @@
              <!-- ./col -->
              <div class="col-lg-3 col-6">
                  <!-- small box -->
-                 <div class="small-box bg-success">
+                 <div class="small-box bg-dark">
                      <div class="inner">
                          <h3>
                              <?= $data['comments'] ?>
@@ -88,9 +88,54 @@
                  </div>
              </div>
              <!-- ./col -->
+             <!-- ./col -->
+             <div class="col-lg-3 col-6">
+                 <!-- small box -->
+                 <div class="small-box bg-secondary">
+                     <div class="inner">
+                         <h3>
+                             <?= $data['promotions'] ?>
+                         </h3>
+
+                         <p>Khuyến mãi</p>
+                     </div>
+                     <div class="icon">
+                         <i class="ion ion-pie-graph"></i>
+                     </div>
+                     <a href="<?= DOCUMENT_ROOT . "/admin/promotions" ?>" class="small-box-footer">Xem khuyến mãi <i class="fas fa-arrow-circle-right"></i></a>
+                 </div>
+             </div>
+             <!-- ./col -->
          </div>
-         <!-- /.row -->
+
+         <div class="row">
+          <div class="col-md-6">
+            <!-- DONUT CHART -->
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Thống kê</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 626px;" class="chartjs-render-monitor"></canvas>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+          </div>
+
+          <!-- /.col (RIGHT) -->
+        </div>
 
      </div><!-- /.container-fluid -->
  </section>
  <!-- /.content -->
+ 

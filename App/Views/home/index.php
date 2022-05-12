@@ -142,7 +142,7 @@
                     <img src="<?= PUBLIC_URL ?>/img/products/1.jpg" alt="product">
                 </a>
                 <a href="">
-                    <h4>Red Printed T-shirt</h4>
+                    <h4>Nồi cơm nắp gài</h4>
                 </a>
                 <div class="rating">
                     <i class="fa fa-star"></i>
@@ -151,11 +151,11 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star-o"></i>
                 </div>
-                <p>$50.00</p>
+                <p>325.000</p>
             </div>
             <div class="col-4">
                 <img src="<?= PUBLIC_URL ?>/img/products/2.jpg" alt="product">
-                <h4>Red Printed T-shirt</h4>
+                <h4>Nồi cơm điện tử</h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -163,11 +163,11 @@
                     <i class="fa fa-star-half-o"></i>
                     <i class="fa fa-star-o"></i>
                 </div>
-                <p>$50.00</p>
+                <p>990.000</p>
             </div>
             <div class="col-4">
                 <img src="<?= PUBLIC_URL ?>/img/products/3.jpg" alt="product">
-                <h4>Red Printed T-shirt</h4>
+                <h4>Nồi cơm Kangaroo</h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -175,11 +175,11 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star-o"></i>
                 </div>
-                <p>$50.00</p>
+                <p>330.000</p>
             </div>
             <div class="col-4">
                 <img src="<?= PUBLIC_URL ?>/img/products/4.jpg" alt="product">
-                <h4>Red Printed T-shirt</h4>
+                <h4>Nồi cơm mini</h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -187,7 +187,7 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star-o"></i>
                 </div>
-                <p>$50.00</p>
+                <p>150.000</p>
             </div>
         </div>
 
@@ -237,7 +237,7 @@
     </div>
 
     <!-- offer -->
-    <div class="offer">
+    <!-- <div class="offer">
         <div class="small-container">
             <div class="row">
                 <div class="col-2">
@@ -254,7 +254,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- testimonial -->
     <div class="testimonial">

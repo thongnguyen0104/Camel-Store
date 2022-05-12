@@ -47,6 +47,9 @@
   <!-- AdminLTE App -->
   <script src="<?= PUBLIC_URL . "/admin" ?>/dist/js/adminlte.js"></script>
 
+  <script src="<?= PUBLIC_URL . "/admin" ?>/plugins/chart.js/Chart.min.js"></script>
+  <!-- Page specific script -->
+
   <!-- DataTables  & Plugins -->
   <script src="<?= PUBLIC_URL . "/admin" ?>/plugins/datatables/jquery.dataTables.min.js"></script>
   <script src="<?= PUBLIC_URL . "/admin" ?>/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -84,6 +87,51 @@
       }).buttons().container().appendTo('#myTable_wrapper .col-md-6:eq(0)');
     });
   </script>
+
+
+
+<script>
+  $(function () {
+    /* ChartJS
+     * -------
+     * Here we will create a few charts using ChartJS
+     */
+
+    //-------------
+    //- DONUT CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+    var donutData        = {
+      labels: [
+          'Sản phẩm',
+          'Loại sản phẩm',
+          'Hóa đơn',
+          'Người dùng',
+          'Bình luận',
+          'Khuyến mãi',
+      ],
+      datasets: [
+        {
+          data: [65,9,27,12,37,7],
+          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+        }
+      ]
+    }
+    var donutOptions     = {
+      maintainAspectRatio : false,
+      responsive : true,
+    }
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    new Chart(donutChartCanvas, {
+      type: 'doughnut',
+      data: donutData,
+      options: donutOptions
+    })
+  })
+</script>
+
 
 </body>
 

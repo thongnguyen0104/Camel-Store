@@ -91,6 +91,7 @@ class OrdersController extends Controller{
         // die(var_dump(PUBLIC_DIR_PRODUCT_IMAGES));
 
         $result = $this->orderModel->update($data);
+        
         if($result){
             $_SESSION['message'] = "Cap nhat don hang thanh cong";
             header("Location: " . DOCUMENT_ROOT . "/admin/orders");

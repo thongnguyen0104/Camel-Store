@@ -57,7 +57,8 @@ class CategoriesController extends Controller{
         }
 
         $result = $this->categoryModel->store($data);
-        if($data){
+        
+        if($result){
             $_SESSION['message'] = "Thêm loại sản phẩm thành công";
             header("Location: " . DOCUMENT_ROOT . "/admin/categories");
         }else {

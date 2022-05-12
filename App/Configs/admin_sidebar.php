@@ -36,6 +36,13 @@
             'name' => 'comments',
             'icon' => 'fa fa-comment',
             'link' => DOCUMENT_ROOT . '/admin/comments',
+         ],
+         'promotions' => [
+            'title' => 'Quản lý khuyến mãi',
+            'name' => 'promotions',
+            'icon' => 'fa fa-percent',
+            'link' => DOCUMENT_ROOT . '/admin/promotions',
          ]
+
     ];
 ?>

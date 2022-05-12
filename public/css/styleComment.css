@@ -34,9 +34,9 @@
 .container-star {
     position: relative;
     width: 400px;
-    background: #111;
+    background: rgb(135, 130, 130);
     padding: 20px, 30px;
-    border: 1px solid #444;
+    border: 1px solid rgb(241, 233, 233);
     border-radius: 5px;
     display: flex;
     align-items: center;
@@ -92,35 +92,35 @@
 }
 
 #rate-1:checked ~ form .cmt-like::before {
-    content: "I just hate it 😓";
+    content: "Rất không thích 😓";
 }
 #rate-1:checked ~ form .form-cmt-rank::before {
     content: "1";
 }
 
 #rate-2:checked ~ form .cmt-like::before {
-    content: "I don't like it 😏";
+    content: "Không thích 😏";
 }
 #rate-2:checked ~ form .form-cmt-rank::before {
     content: "2";
 }
 
 #rate-3:checked ~ form .cmt-like::before {
-    content: "It is awesome 😗";
+    content: "Bình thường 😗";
 }
 #rate-3:checked ~ form .form-cmt-rank::before {
     content: "3";
 }
 
 #rate-4:checked ~ form .cmt-like:before {
-    content: "I just like it 😘";
+    content: "Thích 😘";
 }
 #rate-4:checked ~ form .form-cmt-rank::before {
     content: "4";
 }
 
 #rate-5:checked ~ form .cmt-like::before {
-    content: "I just love it 😍";
+    content: "Rất thích 😍";
 }
 #rate-5:checked ~ form .form-cmt-rank::before {
     content: "5";
@@ -136,7 +136,7 @@
 .container_star-widget .container_star-widget-form header {
     width: 100%;
     font-size: 25px;
-    color: #ff523b;
+    color: #230606;
     font-weight: 500;
     margin: 5px 0 20px 0;
     text-align: center;

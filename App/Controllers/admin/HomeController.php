@@ -9,6 +9,7 @@ class HomeController extends Controller{
     private $orderModel;
     private $userModel;
     private $commentModel;
+    private $promotionModel;
 
     function __construct(){
         $this->orderModel = $this->model('OrderModel');
@@ -16,6 +17,7 @@ class HomeController extends Controller{
         $this->categoryModel = $this->model('CategoryModel');
         $this->productModel = $this->model('ProductModel');
         $this->commentModel = $this->model('CommentModel');
+        $this->promotionModel = $this->model('PromotionModel');
     }
 
     function Index() {
@@ -35,6 +37,8 @@ class HomeController extends Controller{
         $comments = $this->commentModel->getAmount();
         $data['comments'] = $comments[0]['amount'];
 
+        $promotions = $this->promotionModel->getAmount();
+        $data['promotions'] = $promotions[0]['amount'];
         // echo '<pre>';
         // print_r($data);
         // echo '</pre>';
